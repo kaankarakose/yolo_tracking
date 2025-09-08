@@ -27,7 +27,7 @@ def run_tracking(input_folder, output_folder, yolo_model='yolox_x', tracking_met
 
         # Construct the command
         command = [
-            'python3', '/nas/project_data/B1_Behavior/rush/object-manipulation/demo/tracking/yolo_tracking/examples/track.py',
+            'python3', './examples/track.py',
             '--yolo-model', yolo_model,
             '--tracking-method', tracking_method,
             '--source', video_path,
