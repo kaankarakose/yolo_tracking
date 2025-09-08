@@ -1,4 +1,5 @@
 # Mikel Broström 🔥 Yolo Tracking 🧾 AGPL-3.0 license
+#python3 /nas/project_data/B1_Behavior/rush/object-manipulation/demo/tracking/yolo_tracking/examples/track.py --yolo-model yolox_x --tracking-method botsort --source /nas/project_data/B1_Behavior/rush/object-manipulation/demo/data/ --reid-model clip_market1501.pt --classes 0 --device 0 --save --save-id-crops --save-txt --save-motp4 --reid-model clip_market1501.pt --classes 0 --device 0 --save --save-id-crops --save-txt --save
 
 import argparse
 from functools import partial
@@ -138,6 +139,11 @@ def run(args):
 
 
 def parse_opt():
+
+
+    #python3 /nas/project_data/B1_Behavior/rush/object-manipulation/demo/tracking/yolo_tracking/examples/track.py --yolo-model yolox_x --tracking-method botsort --source /nas/project_data/B1_Behavior/rush/object-manipulation/demo/data/argo_64.mp4 --reid-model clip_market1501.pt --classes 0 --device 0 --save --save-id-crops --save-txt --save-mot
+    #
+    #
     parser = argparse.ArgumentParser()
     parser.add_argument('--yolo-model', type=Path, default=WEIGHTS / 'yolov8n',
                         help='yolo model path')
@@ -149,9 +155,9 @@ def parse_opt():
                         help='file/dir/URL/glob, 0 for webcam')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640],
                         help='inference size h,w')
-    parser.add_argument('--conf', type=float, default=0.5,
+    parser.add_argument('--conf', type=float, default=0.4, # kaan
                         help='confidence threshold')
-    parser.add_argument('--iou', type=float, default=0.7,
+    parser.add_argument('--iou', type=float, default=0.4,
                         help='intersection over union (IoU) threshold for NMS')
     parser.add_argument('--device', default='',
                         help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
@@ -160,7 +166,7 @@ def parse_opt():
     parser.add_argument('--save', action='store_true',
                         help='save video tracking results')
     # class 0 is person, 1 is bycicle, 2 is car... 79 is oven
-    parser.add_argument('--classes', nargs='+', type=int,
+    parser.add_argument('--classes', nargs='+', type=int,default= [60],
                         help='filter by class: --classes 0, or --classes 0 2 3')
     parser.add_argument('--project', default=ROOT / 'runs' / 'track',
                         help='save results to project/name')

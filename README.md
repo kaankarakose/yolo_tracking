@@ -364,7 +364,7 @@ tracker = DeepOCSORT(
 detection_model = AutoDetectionModel.from_pretrained(
     model_type='yolov8',
     model_path='yolov8n.pt',
-    confidence_threshold=0.5,
+    confidence_threshold=0.60, # kaan 
     device="cpu",  # or 'cuda:0'
 )
 

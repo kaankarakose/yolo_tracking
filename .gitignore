@@ -1,3 +1,6 @@
+yolox_n
+yolox_n
+**/.nfs*
 .vscode/
 .venv/
 .eggs/
@@ -48,3 +51,4 @@ dist/
 
 # cmc debug images
 boxmot/motion/cmc/*.jpg
+**/.nfs*
