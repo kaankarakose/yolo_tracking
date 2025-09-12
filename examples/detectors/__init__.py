@@ -1,8 +1,10 @@
 # Mikel Broström 🔥 Yolo Tracking 🧾 AGPL-3.0 license
 
 from boxmot.utils import logger as LOGGER
-from boxmot.utils.checks import TestRequirements
-
+#from boxmot.utils.checks import TestRequirements
+from boxmot.utils.checks import RequirementsChecker
+# Create an alias if the code expects TestRequirements
+TestRequirements = RequirementsChecker
 tr = TestRequirements()
 
 

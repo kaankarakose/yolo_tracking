@@ -8,6 +8,8 @@ env/
 *.DS_Store
 .coverage
 htmlcov/
+output/
+*.pt
 # interpreter bytecode
 __pycache__/
 

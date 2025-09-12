@@ -1,6 +1,11 @@
 # Mikel Broström 🔥 Yolo Tracking 🧾 AGPL-3.0 license
 #python3 /nas/project_data/B1_Behavior/rush/object-manipulation/demo/tracking/yolo_tracking/examples/track.py --yolo-model yolox_x --tracking-method botsort --source /nas/project_data/B1_Behavior/rush/object-manipulation/demo/data/ --reid-model clip_market1501.pt --classes 0 --device 0 --save --save-id-crops --save-txt --save-motp4 --reid-model clip_market1501.pt --classes 0 --device 0 --save --save-id-crops --save-txt --save
 
+
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
 import argparse
 from functools import partial
 from pathlib import Path
@@ -10,7 +15,12 @@ import torch
 from boxmot import TRACKERS
 from boxmot.tracker_zoo import create_tracker
 from boxmot.utils import ROOT, WEIGHTS
-from boxmot.utils.checks import TestRequirements
+# import boxmot.utils.checks #import TestRequirements
+# TestRequirements = boxmot.utils.checks.TestRequirements
+from boxmot.utils.checks import RequirementsChecker
+# Create an alias if the code expects TestRequirements
+TestRequirements = RequirementsChecker
+
 from examples.detectors import get_yolo_inferer
 
 __tr = TestRequirements()
@@ -39,7 +49,9 @@ def on_predict_start(predictor, persist=False):
         ROOT /\
         'boxmot' /\
         'configs' /\
+        'trackers' /\
         (predictor.custom_args.tracking_method + '.yaml')
+
     trackers = []
     for i in range(predictor.dataset.bs):
         tracker = create_tracker(
