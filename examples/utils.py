@@ -13,12 +13,11 @@ def write_mot_results(txt_path, results, frame_idx):
     mot = torch.cat([
         frame_idx,
         results.boxes.id.unsqueeze(1).to('cpu'),
-        ops.xyxy2ltwh(results.boxes.xyxy).to('cpu'),
+        results.boxes.xyxy.to('cpu'),
         results.boxes.conf.unsqueeze(1).to('cpu'),
         results.boxes.cls.unsqueeze(1).to('cpu'),
         dont_care
     ], dim=1)
-
     # create parent folder
     txt_path.parent.mkdir(parents=True, exist_ok=True)
     # create mot txt file
