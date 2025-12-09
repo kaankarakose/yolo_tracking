@@ -228,6 +228,14 @@ class BoTSORT(object):
         self.cmc = SparseOptFlow()
         self.fuse_first_associate = fuse_first_associate
 
+
+    def reset(self):
+        """Reset the tracker state."""
+        self.tracked_stracks = []
+        self.lost_stracks = []
+        self.removed_stracks = []
+        self.frame_id = 0
+        BaseTrack.clear_count()
     def update(self, dets, img):
         assert isinstance(
             dets, np.ndarray
