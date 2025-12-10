@@ -228,7 +228,6 @@ class BoTSORT(object):
         self.cmc = SparseOptFlow()
         self.fuse_first_associate = fuse_first_associate
 
-
     def reset(self):
         """Reset the tracker state."""
         self.tracked_stracks = []
@@ -236,7 +235,17 @@ class BoTSORT(object):
         self.removed_stracks = []
         self.frame_id = 0
         BaseTrack.clear_count()
+
     def update(self, dets, img):
+        if not isinstance(dets, np.ndarray):
+            if hasattr(dets, "data"):
+                dets = dets.data
+            elif hasattr(dets, "xyxy"):
+                dets = dets.xyxy
+        
+        if hasattr(dets, "cpu"):
+            dets = dets.cpu().numpy()
+
         assert isinstance(
             dets, np.ndarray
         ), f"Unsupported 'dets' input format '{type(dets)}', valid format is np.ndarray"
